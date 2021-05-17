@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.4.5'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'com.github.sherter.google-java-format' version '0.9'
+}
+
+group 'com.github.eljaiek.machinery'
+version '0.1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+googleJavaFormat {
+    options style: 'AOSP'
+}
+
+dependencies {
+    implementation(platform('io.spring.initializr:initializr-bom:0.10.0'))
+
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("io.spring.initializr:initializr-web")
+    implementation("io.spring.initializr:initializr-generator-spring")
+
+    implementation("javax.cache:cache-api")
+    implementation("org.ehcache:ehcache")
+
+    runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
